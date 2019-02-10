@@ -86,6 +86,11 @@ class Basket {
     _getTotalQuantity() {
 
     }
+
+    //создать заказ с этой корзиной
+    order() {
+
+    }
 }
 
 let products = new ProductsList();
