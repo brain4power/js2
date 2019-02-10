@@ -53,5 +53,40 @@ class ProductItem {
     }
 }
 
+class Basket {
+    constructor(container = '.cart', user) {
+        this.container = container;
+        this.user = user; // пользователь, к которому эта корзина относится
+        this.goods = {}; // все товары в корзине {good: quantity,}
+        this.totalCost = this._getTotalCost();
+        this.totalQuantity = this._getTotalQuantity();
+    }
+
+    // добавить товар в корзину
+    addGood(good) {
+
+    }
+
+    // удалить товар из корзины
+    removeGood(good) {
+
+    }
+
+    // уменьшить количество товара в корзине на 1
+    decGoodCount(good) {
+
+    }
+
+    // получить общую стоимость товаров в корзине
+    _getTotalCost() {
+
+    }
+
+    // получить общее количество товаров в корзине
+    _getTotalQuantity() {
+
+    }
+}
+
 let products = new ProductsList();
 products.render();
