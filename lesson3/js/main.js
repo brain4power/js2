@@ -1,5 +1,9 @@
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
+const settings = {
+    buyButtonClass: 'buy-btn',
+    delProductButtonClass: 'del-btn',
+};
 
 class ProductsList {
     constructor(container = '.products') {
@@ -36,21 +40,13 @@ class ProductsList {
             block.insertAdjacentHTML('beforeend', productObj.render());
         }
     }
-
-    // getProductById(productId) {
-    //     for (let i = 0; this.allProducts.length; i++) {
-    //         if (this.allProducts[i].id_product === productId) {
-    //             return this.allProducts[i].id_product
-    //         }
-    //     }
-    // }
 }
 
 class ProductItem {
     constructor(id, title, price, img = 'https://placehold.it/200x150') {
         this.settings = {
-            buyButtonClass: 'buy-btn',
-            delProductButtonClass: 'del-btn'
+            buyButtonClass: settings.buyButtonClass,
+            delProductButtonClass: settings.delProductButtonClass,
         };
         this.id_product = id;
         this.product_name = title;
@@ -84,10 +80,10 @@ class ProductItem {
 class Basket {
     constructor(user, container = '.cart') {
         this.settings = {
+            buyButtonClass: settings.buyButtonClass,
+            delProductButtonClass: settings.delProductButtonClass,
             countSelector: '#basket-count',
             priceSelector: '#basket-price',
-            buyButtonClass: 'buy-btn',
-            delProductButtonClass: 'del-btn',
         };
         this.user = user; // пользователь, к которому эта корзина относится
         this.goods = []; // все товары в корзине
