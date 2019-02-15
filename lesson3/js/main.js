@@ -91,8 +91,6 @@ class Basket {
         };
         this.user = user; // пользователь, к которому эта корзина относится
         this.goods = []; // все товары в корзине
-        this.totalCost = 0;
-        this.totalQuantity = 0;
         this.allBuyButtons = this._getAllBuyButtons();
         this.allDelProductButtons = this._getAllDelProductButtons();
         this._setEventListenerOnAllButtons();
@@ -161,7 +159,7 @@ class Basket {
 
     // удалить товар из корзины
     removeGood(goodId) {
-        for (let i = 0; this.goods.length; i++) {
+        for (let i = 0; i < this.goods.length; i++) {
             if (this.goods[i]['id'] === goodId) {
                 return this.goods.splice(i, 1);
             }
