@@ -1,3 +1,6 @@
+const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+
+
 class ProductsList {
     constructor(container = '.products') {
         this.container = container;
@@ -7,14 +10,14 @@ class ProductsList {
         this.getSummaryCoast = this._getSummaryCoast();
     }
 
-    _getProducts() {
-        this.goods = [
-            {title: 'Notebook', price: 2000},
-            {title: 'Mouse', price: 20},
-            {title: 'Keyboard', price: 35},
-            {title: 'Gamepad', price: 48},
-            {title: 'Chair', price: 500},
-        ];
+    _getProducts(){
+        fetch(`${API}/catalogData.json`)
+            .then(result => result.json())
+            .then(data => {
+                this.goods = data;
+                this.render();
+            })
+            .catch(error => console.log(error));
     }
 
     _getSummaryCoast() {
@@ -28,16 +31,18 @@ class ProductsList {
     render() {
         const block = document.querySelector(this.container);
         for (let product of this.goods) {
-            const productObj = new ProductItem(product.title, product.price);
+            const productObj = new ProductItem(product.id_product, product.product_name, product.price);
             this.allProducts.push(productObj);
             block.insertAdjacentHTML('beforeend', productObj.render());
         }
+        console.log(this.allProducts);
     }
 }
 
 class ProductItem {
-    constructor(title, price, img = 'https://placehold.it/200x150') {
-        this.title = title;
+    constructor(id, title, price, img = 'https://placehold.it/200x150') {
+        this.id_product = id;
+        this.product_name = title;
         this.price = price;
         this.img = img;
     }
@@ -46,9 +51,10 @@ class ProductItem {
         return `<div class="product-item">
                     <img src="${this.img}" alt="Some img">
                     <div class="desc">
-                        <h3>${this.title}</h3>
+                        <h3>${this.product_name}</h3>
                         <p>$${this.price}</p>
                     </div>
+                    <button>Добавить в корзину</button>
                 </div>`;
     }
 }
@@ -94,4 +100,3 @@ class Basket {
 }
 
 let products = new ProductsList();
-products.render();
