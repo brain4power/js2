@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    INPUT_URL = 'texttoreplace.txt';
+
+    function changeQuotes(url){
+        fetch(url)
+        .then(result => result.text())
+        .then(fileText => {
+            //console.log(fileText.replace(/\B\'/g, '\"'));
+            return fileText.replace(/\B\'/g,'\"');
+        });
+    }
+
+    changeQuotes(INPUT_URL);
+
+</script>
+</body>
+</html>
